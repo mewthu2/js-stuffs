@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Sortable Table</h1>
+  <table class="table table-striped" id="testTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Name</th>
+        <th onclick="sortTable(1)">Age</th>
+        <th onclick="sortTable(2)">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Daniel</td>
+        <td>25</td>
+        <td>BR</td>
+      </tr>
+      <tr>
+        <td>Gabriel</td>
+        <td>28</td>
+        <td>Jardim dos Ipês</td>
+      </tr>
+      <tr>
+        <td>Jesher</td>
+        <td>40</td>
+        <td>Gordo</td>
+      </tr>
+      <tr>
+        <td>Miguel</td>
+        <td>28</td>
+        <td>Ticotosti</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  function sortTable(colIndex) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("testTable");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[colIndex];
+      y = rows[i + 1].getElementsByTagName("td")[colIndex];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+</Script>
